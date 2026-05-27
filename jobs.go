@@ -1,25 +1,12 @@
 package fake
 
-import (
-	"strings"
-)
-
 // Company generates company name
-func Company() string {
-	return lookup(lang, "companies", true)
-}
+func Company() string { _ = "STUB: not implemented"; return "" }
 
 // JobTitle generates job title
-func JobTitle() string {
-	job := lookup(lang, "jobs", true)
-	return strings.Replace(job, "#{N}", jobTitleSuffix(), 1)
-}
+func JobTitle() string { _ = "STUB: not implemented"; return "" }
 
-func jobTitleSuffix() string {
-	return lookup(lang, "jobs_suffixes", false)
-}
+func jobTitleSuffix() string { _ = "STUB: not implemented"; return "" }
 
 // Industry generates industry name
-func Industry() string {
-	return lookup(lang, "industries", true)
-}
+func Industry() string { _ = "STUB: not implemented"; return "" }

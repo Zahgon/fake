@@ -1,10 +1,7 @@
 package fake
 
 import (
-	"fmt"
 	"sort"
-	"strconv"
-	"strings"
 )
 
 type creditCard struct {
@@ -13,9 +10,7 @@ type creditCard struct {
 	prefixes []int
 }
 
-func (c creditCard) RandomPrefix() int {
-	return c.prefixes[r.Intn(len(c.prefixes))]
-}
+func (c creditCard) RandomPrefix() int { _ = "STUB: not implemented"; return 0 }
 
 var (
 	creditCards = map[string]creditCard{
@@ -38,55 +33,15 @@ func init() {
 
 // CreditCardType returns one of the following credit values:
 // VISA, MasterCard, American Express and Discover
-func CreditCardType() string {
-	n := len(creditCards)
-	var vendors []string
-	for _, cc := range creditCards {
-		vendors = append(vendors, cc.vendor)
-	}
-
-	return vendors[r.Intn(n)]
-}
+func CreditCardType() string { _ = "STUB: not implemented"; return "" }
 
 // CreditCardNum generated credit card number according to the card number rules
-func CreditCardNum(vendor string) string {
-	if vendor != "" {
-		vendor = strings.ToLower(vendor)
-	} else {
-		vendor = creditCardsKeys[r.Intn(len(creditCardsKeys))]
-	}
-	card, ok := creditCards[vendor]
-	if !ok {
-		panic(fmt.Sprintf("unsupported vendor %q", vendor))
-	}
-
-	prefix := strconv.Itoa(card.RandomPrefix())
-	num := []rune(prefix)
-	for i := 0; i < card.length-len(prefix)-1; i++ {
-		num = append(num, rune(strconv.Itoa(r.Intn(10))[0]))
-	}
-	num = append(num, creditCardNumChecksum(num))
-
-	return string(num)
-}
+func CreditCardNum(vendor string) string { _ = "STUB: not implemented"; return "" }
 
 func creditCardNumChecksum(num []rune) rune {
+	_ = "STUB: not implemented"
 	// See: https://en.wikipedia.org/wiki/Luhn_algorithm
-	sum := 0
-	pos := 0
-	for i := len(num) - 1; i >= 0; i-- {
-		n := int(num[i] - '0')
-		if pos%2 == 0 {
-			n *= 2
-			if n > 9 {
-				n -= 9
-			}
-		}
-		sum += n
-		pos++
-	}
-
-	// https://en.wikipedia.org/wiki/Talk:Luhn_algorithm#Formula_error
-	checksum := 10 - (sum%10)%10
-	return rune(strconv.Itoa(checksum)[0])
+	return 0
 }
+
+// https://en.wikipedia.org/wiki/Talk:Luhn_algorithm#Formula_error
